@@ -1,93 +1,125 @@
+let scoreMessage = document.getElementById('scoreboard');
+const rockSelection = document.getElementById('rock');
+const paperSelection = document.getElementById('paper');
+const scissorsSelection = document.getElementById('scissors');
+
+
+let playerSelection = "";
+let computerSelection = "";
+
+let computerScore = 0;
+let playerScore = 0
+
+
+rockSelection.addEventListener('click', () => { 
+    scoreMessage.innerHTML = ""    
+    playerSelection = "Rock";
+    playRound(playerSelection, computerSelection);
+    scoreCheck();
+});
+
+paperSelection.addEventListener('click', () => { 
+    scoreMessage.innerHTML = ""    
+    playerSelection = "Paper";
+    playRound(playerSelection, computerSelection);
+    scoreCheck();
+});
+
+scissorsSelection.addEventListener('click', () => { 
+    scoreMessage.innerHTML = ""    
+    playerSelection = "Scissors";
+    playRound(playerSelection, computerSelection);
+    scoreCheck();
+});
+
 function computerPlay() {
-    let options=['rock','paper','scissors']
+    let options=['Rock','Paper','Scissors']
     let choice = options[Math.floor(Math.random()*options.length)]
     return choice;
 }
-
-let computerScore = 0;
-let playerScore = 0;
+;
 
 function playRound(playerSelection, computerSelection) {
-    playerSelection = window.prompt("Enter your choice! \n Rock, Paper or Scissors").toLowerCase()
     computerSelection = computerPlay();
-    console.log("Your choice: ", playerSelection," Computer choice: ", computerSelection);
+    scoreMessage.innerHTML = `Your choice ${playerSelection} Computer's Choice ${computerSelection}`;
 
-    if (playerSelection === "rock" && computerSelection === "paper") { // taş - kağıt
+    if (playerSelection === "Rock" && computerSelection === "Paper") { // taş - kağıt
         computerScore = computerScore + 1;
-        console.log(`Computer has won! \n Your Score: ${playerScore} - Computer Score: ${computerScore} `);
-    } else if (playerSelection === "rock" && computerSelection === "rock") { //taş -taş
-        console.log(`It's a draw! \n Your Score: ${playerScore} - Computer Score: ${computerScore}`);
-    } else if (playerSelection === "rock" && computerSelection === "scissors") { //taş - makas
+        scoreMessage.innerHTML = `Your choice: ${playerSelection}<br> 
+        Computer's Choice: ${computerSelection}<br>
+        Scoreboard: ${playerScore} - ${computerScore}`
+
+    } else if (playerSelection === "Rock" && computerSelection === "Rock") { //taş -taş
+        scoreMessage.innerHTML = `Your choice: ${playerSelection}<br> 
+        Computer's Choice: ${computerSelection}<br>
+        Scoreboard: ${playerScore} - ${computerScore}`
+
+    } else if (playerSelection === "Rock" && computerSelection === "Scissors") { //taş - makas
         playerScore = playerScore + 1;
-        console.log(`You have won! \n Your Score: ${playerScore} - Computer Score: ${computerScore} `);
-    } else if (playerSelection === "paper" && computerSelection === "scissors") { //kağıt - makas
+        scoreMessage.innerHTML = `Your choice: ${playerSelection}<br> 
+        Computer's Choice: ${computerSelection}<br>
+        Scoreboard: ${playerScore} - ${computerScore}`
+
+    } else if (playerSelection === "Paper" && computerSelection === "Scissors") { //kağıt - makas
         computerScore = computerScore + 1;
-        console.log(`Computer has won! \n Your Score: ${playerScore} - Computer Score: ${computerScore} `);
-    } else if (playerSelection == "paper" && computerSelection === "paper") { //kağıt - kağıt
-        console.log(`It's a draw! \n Your Score: ${playerScore} - Computer Score: ${computerScore}`);
-    } else if (playerSelection === "paper" && computerSelection === "rock") { //kağıt - taş
+        scoreMessage.innerHTML = `Your choice: ${playerSelection}<br> 
+        Computer's Choice: ${computerSelection}<br>
+        Scoreboard: ${playerScore} - ${computerScore}`
+    } else if (playerSelection == "Paper" && computerSelection === "Paper") { //kağıt - kağıt
+        scoreMessage.innerHTML = `Your choice: ${playerSelection}<br> 
+        Computer's Choice: ${computerSelection}<br>
+        Scoreboard: ${playerScore} - ${computerScore}`
+    } else if (playerSelection === "Paper" && computerSelection === "Rock") { //kağıt - taş
         playerScore = playerScore + 1;
-        console.log(`You have won! \n Your Score: ${playerScore} - Computer Score: ${computerScore} `);
-    } else if (playerSelection === "scissors" && computerSelection === "rock") { //makas -taş
+        scoreMessage.innerHTML = `Your choice: ${playerSelection}<br> 
+        Computer's Choice: ${computerSelection}<br>
+        Scoreboard: ${playerScore} - ${computerScore}`
+    } else if (playerSelection === "Scissors" && computerSelection === "Rock") { //makas -taş
         computerScore = computerScore + 1;
-        console.log(`Computer has won! \n Your Score: ${playerScore} - Computer Score: ${computerScore} `);
-    } else if(playerSelection === "scissors" && computerSelection === "scissors") { //makas - makas
-        console.log(`It's a draw! \n Your Score: ${playerScore} - Computer Score: ${computerScore}`);
-    } else if (playerSelection === "scissors" && computerSelection === "paper") { //makas-kağıt
+        scoreMessage.innerHTML = `Your choice: ${playerSelection}<br> 
+        Computer's Choice: ${computerSelection}<br>
+        Scoreboard: ${playerScore} - ${computerScore}`
+    } else if(playerSelection === "Scissors" && computerSelection === "Scissors") { //makas - makas
+        scoreMessage.innerHTML = `Your choice: ${playerSelection}<br> 
+        Computer's Choice: ${computerSelection}<br>
+        Scoreboard: ${playerScore} - ${computerScore}`
+    } else if (playerSelection === "Scissors" && computerSelection === "Paper") { //makas-kağıt
         playerScore = playerScore + 1;
-        console.log(`You have won! \n Your Score: ${playerScore} - Computer Score: ${computerScore} `); 
+        scoreMessage.innerHTML = `Your choice: ${playerSelection}<br> 
+        Computer's Choice: ${computerSelection}<br>
+        Scoreboard: ${playerScore} - ${computerScore}`
     }
 
 
 
 }
 
-// Legacy code which ended the game within 5 rounds instead of reaching to 5
 
-// function game() {
-//     for (let round = 1; round <= 5; round++) {
-//         console.log(`Round number ${round}`);
-//         playRound();
 
-//     }
+function scoreCheck() {
 
-//     if (computerScore > playerScore) {
-//         console.log(`Game Ended! You Lost!`);        
-
-//     } else if (computerScore = playerScore) {
-//         console.log(`Game Ended! It's a draw! `)
-//     } else {
-//         console.log(`Game Ended! You Won!`)
-//     }
-
-    // computerScore = 0;
-    // playerScore = 0;
-
-//}
-
-function game() {
-
-    for (let highestScore = 0; highestScore < 5; ) {
-        playRound();
-
-        if (computerScore > playerScore) {
-            highestScore = computerScore;
-      } else if (playerScore > computerScore) {
-         highestScore = playerScore;
-
-        } else if (playerScore == computerScore);
-           highestScore = playerScore // just pick one of them, doesn't really matter which one
-    }
-
+if (computerScore == 5 || playerScore == 5 ) {
     if (computerScore > playerScore) {
-        console.log(`Game Ended! You Lost!`);        
-    } else if (computerScore < playerScore) {
-        console.log(`Game Ended! You won! `)
-    } else {
-        console.log(`Game Ended! It's a draw!`)
+        scoreMessage.innerHTML = `Your choice: ${playerSelection}<br> 
+        Computer's Choice: ${computerSelection}<br>
+        Scoreboard: ${playerScore} - ${computerScore}<br>
+        Game Over! You lost! `
+        computerScore = 0;
+        playerScore = 0;    
+
+    } else if (playerScore > computerScore) {
+        scoreMessage.innerHTML = `Your choice: ${playerSelection}<br> 
+        Computer's Choice: ${computerSelection}<br>
+        Scoreboard: ${playerScore} - ${computerScore}<br>
+        Game Over! You won! `
+        computerScore = 0;
+        playerScore = 0;    
+
+
     }
 
-    computerScore = 0;
-    playerScore = 0;    
+}
+
+  
 }
 
