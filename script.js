@@ -1,4 +1,4 @@
-let scoreMessage = document.getElementById('scoreboard');
+const scoreMessage = document.getElementById('scoreboard');
 const rockSelection = document.getElementById('rock');
 const paperSelection = document.getElementById('paper');
 const scissorsSelection = document.getElementById('scissors');
@@ -8,7 +8,7 @@ let playerSelection = "";
 let computerSelection = "";
 
 let computerScore = 0;
-let playerScore = 0
+let playerScore = 0;
 
 
 rockSelection.addEventListener('click', () => { 
