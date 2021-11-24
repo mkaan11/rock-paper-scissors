@@ -4,6 +4,7 @@ function computerPlay() {
     return choice;
 }
 
+scoreMessage = document.getElementById('scoreboard')
 let computerScore = 0;
 let playerScore = 0;
 
@@ -42,28 +43,7 @@ function playRound(playerSelection, computerSelection) {
 
 }
 
-// Legacy code which ended the game within 5 rounds instead of reaching to 5
 
-// function game() {
-//     for (let round = 1; round <= 5; round++) {
-//         console.log(`Round number ${round}`);
-//         playRound();
-
-//     }
-
-//     if (computerScore > playerScore) {
-//         console.log(`Game Ended! You Lost!`);        
-
-//     } else if (computerScore = playerScore) {
-//         console.log(`Game Ended! It's a draw! `)
-//     } else {
-//         console.log(`Game Ended! You Won!`)
-//     }
-
-    // computerScore = 0;
-    // playerScore = 0;
-
-//}
 
 function game() {
 
